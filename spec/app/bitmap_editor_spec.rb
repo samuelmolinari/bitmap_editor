@@ -7,17 +7,71 @@ describe BitmapEditor do
   def one_off_cmd(editor, input)
     allow(editor).to receive_message_chain(:gets, :chomp) do
       subject.instance_variable_set(:@running, false)
-      p input
+      input
     end
   end
 
   def cmd(editor, input)
     allow(editor).to receive_message_chain(:gets, :chomp) do
-      p input
+      input
     end
   end
 
   describe 'run' do
+    describe 'I command' do
+      it 'creates a new matrix of size MxN' do
+        one_off_cmd(subject, 'I M N')
+        expect(subject).to receive(:create_new_matrix).with('M', 'N')
+
+        subject.run
+      end
+    end
+
+    describe 'C command' do
+      it 'clears matrix' do
+        one_off_cmd(subject, 'C')
+        expect(subject).to receive(:clear_matrix)
+
+        subject.run
+      end
+    end
+
+    describe 'L command' do
+      it 'colours pixel' do
+        one_off_cmd(subject, 'L X Y C')
+        expect(subject).to receive(:colour_matrix_pixel).with('X', 'Y', 'C')
+
+        subject.run
+      end
+    end
+
+    describe 'V command' do
+      it 'colours matrix row' do
+        one_off_cmd(subject, 'V X Y1 Y2 C')
+        expect(subject).to receive(:colour_matrix_row).with('X', 'Y1', 'Y2', 'C')
+
+        subject.run
+      end
+    end
+
+    describe 'H command' do
+      it 'colours matrix row' do
+        one_off_cmd(subject, 'H X1 X2 Y C')
+        expect(subject).to receive(:colour_matrix_column).with('X1', 'X2', 'Y', 'C')
+
+        subject.run
+      end
+    end
+
+    describe 'S command' do
+      it 'shows the matrix' do
+        one_off_cmd(subject, 'S')
+        expect(subject).to receive(:show_matrix)
+
+        subject.run
+      end
+    end
+
     describe '? command' do
       before(:each) do
         one_off_cmd(subject, '?')

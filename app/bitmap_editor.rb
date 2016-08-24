@@ -5,8 +5,23 @@ class BitmapEditor
     puts 'type ? for help'
     while @running
       print '> '
-      input = gets.chomp
-      case input
+
+      args = gets.chomp.split(' ')
+      cmd = args.shift
+
+      case cmd
+        when 'I'
+          create_new_matrix(*args)
+        when 'C'
+          clear_matrix
+        when 'L'
+          colour_matrix_pixel(*args)
+        when 'V'
+          colour_matrix_row(*args)
+        when 'H'
+          colour_matrix_column(*args)
+        when 'S'
+          show_matrix
         when '?'
           show_help
         when 'X'
@@ -18,6 +33,24 @@ class BitmapEditor
   end
 
   private
+    def create_new_matrix(m,n)
+    end
+
+    def clear_matrix
+    end
+
+    def colour_matrix_pixel(x, y, c)
+    end
+
+    def colour_matrix_row(x, y1, y2, c)
+    end
+
+    def colour_matrix_column(x1, x2, y, c)
+    end
+
+    def show_matrix
+    end
+
     def unknown_command
       puts 'unrecognised command :('
     end
