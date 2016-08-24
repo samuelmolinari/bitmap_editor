@@ -11,26 +11,54 @@ describe BitmapEditor do
     end
   end
 
+  def cmd(editor, input)
+    allow(editor).to receive_message_chain(:gets, :chomp) do
+      p input
+    end
+  end
+
   describe 'run' do
     describe '? command' do
       before(:each) do
         one_off_cmd(subject, '?')
       end
 
-      it 'shows help' do
-        expect(subject).to receive(:show_help)
-        subject.run
+      it 'outputs helps for I' do
+        expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+      end
+
+      it 'outputs helps for C command' do
+        expect { subject.run }.to output(/C - Clears the table, setting all pixels to white \(O\)\./).to_stdout
+      end
+
+      it 'outputs helps for L command' do
+        expect { subject.run }.to output(/L X Y C - Colours the pixel \(X,Y\) with colour C\./).to_stdout
+      end
+
+      it 'outputs helps for V command' do
+        expect { subject.run }.to output(/V X Y1 Y2 C - Draw a vertical segment of colour C in column X between rows Y1 and Y2 \(inclusive\)\./).to_stdout
+      end
+
+      it 'outputs helps for H command' do
+        expect { subject.run }.to output(/H X1 X2 Y C - Draw a horizontal segment of colour C in row Y between columns X1 and X2 \(inclusive\)\./).to_stdout
+      end
+
+      it 'outputs helps for S command' do
+        expect { subject.run }.to output(/S - Show the contents of the current image/).to_stdout
+      end
+
+      it 'outputs helps for X command' do
+        expect { subject.run }.to output(/X - Terminate the session/).to_stdout
       end
     end
 
     describe 'X command' do
       before(:each) do
-        one_off_cmd(subject, 'X')
+        cmd(subject, 'X')
       end
 
-      it 'exists console' do
-        expect(subject).to receive(:exit_console)
-        subject.run
+      it 'outputs goodbye message and exists loop' do
+        expect { subject.run }.to output(/goodbye!/).to_stdout
       end
     end
 
@@ -40,8 +68,7 @@ describe BitmapEditor do
       end
 
       it 'outputs `unrecognised command :(`' do
-        expect(subject).to receive(:unknown_command)
-        subject.run
+        expect { subject.run }.to output(/unrecognised command :\(/).to_stdout
       end
     end
   end
