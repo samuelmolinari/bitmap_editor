@@ -25,6 +25,8 @@ describe BitmapEditor do
 
         subject.run
       end
+
+      xit 'output an error when the M or N values are not between 1 and 250'
     end
 
     describe 'C command' do
@@ -43,6 +45,8 @@ describe BitmapEditor do
 
         subject.run
       end
+
+      xit 'output an error when the C value is not a capital letter'
     end
 
     describe 'V command' do
@@ -52,6 +56,8 @@ describe BitmapEditor do
 
         subject.run
       end
+
+      xit 'output an error when the C value is not a capital letter'
     end
 
     describe 'H command' do
@@ -61,6 +67,8 @@ describe BitmapEditor do
 
         subject.run
       end
+
+      xit 'output an error when the C value is not a capital letter'
     end
 
     describe 'S command' do
