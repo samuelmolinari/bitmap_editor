@@ -12,12 +12,16 @@ class BitmapEditor
         when 'X'
           exit_console
         else
-          puts 'unrecognised command :('
+          unknown_command
       end
     end
   end
 
   private
+    def unknown_command
+      puts 'unrecognised command :('
+    end
+
     def exit_console
       puts 'goodbye!'
       @running = false
