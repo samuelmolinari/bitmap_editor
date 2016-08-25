@@ -16,10 +16,6 @@ class Bitmap < Matrix
     value && value.size == 1 && /[[:upper:]]/.match(value)
   end
 
-  def hint
-    "Must have a width and height between 1 and #{MAX_SIZE}"
-  end
-
   private
 
   def parse_size(size)
