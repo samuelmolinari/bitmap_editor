@@ -1,21 +1,12 @@
 require 'spec_helper'
+require 'support/command_macro'
+
 require_relative '../../app/bitmap_editor'
 
 describe BitmapEditor do
+  include CommandMacro
+
   subject { described_class.new }
-
-  def one_off_cmd(editor, input)
-    allow(editor).to receive_message_chain(:gets, :chomp) do
-      subject.instance_variable_set(:@running, false)
-      input
-    end
-  end
-
-  def cmd(editor, input)
-    allow(editor).to receive_message_chain(:gets, :chomp) do
-      input
-    end
-  end
 
   describe 'run' do
     describe 'I command' do

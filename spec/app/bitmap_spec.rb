@@ -98,7 +98,7 @@ describe Bitmap do
       subject.set_pixel(1, 3, 'E')
       subject.set_pixel(2, 3, 'F')
 
-      expect(subject.to_s).to eq("A B\nC D\nE F")
+      expect(subject.to_s).to eq("AB\nCD\nEF")
     end
   end
 end

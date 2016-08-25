@@ -32,7 +32,7 @@ class Bitmap
   end
 
   def to_s
-    mutli_dimmentional.map { |row| row.join(' ') }.join("\n")
+    mutli_dimmentional.map(&:join).join("\n")
   end
 
   private

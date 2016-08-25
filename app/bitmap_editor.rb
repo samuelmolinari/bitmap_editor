@@ -1,4 +1,5 @@
 require_relative 'command'
+require_relative 'bitmap'
 
 class BitmapEditor
   attr_reader :commands, :bitmap
