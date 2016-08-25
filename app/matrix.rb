@@ -36,17 +36,13 @@ class Matrix
   end
 
   def to_s
-    mutli_dimmentional.map(&:join).join("\n")
+    matrix.join.scan(/.{#{width}}/).join("\n")
   end
 
   private
 
     def valid_value?(value)
       true
-    end
-
-    def mutli_dimmentional
-      matrix.each_slice(width).to_a
     end
 
     def coordinates_to_index(x, y)
