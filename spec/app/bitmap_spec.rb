@@ -42,12 +42,28 @@ describe Bitmap do
       subject.set_column(1, 2, 3, 'C')
       expect(subject.matrix).to eq ['O', 'O', 'C', 'O', 'C', 'O']
     end
+
+    context 'when y1 is greater than y2' do
+      xit 'raises an error'
+    end
+
+    context 'when coordinates are out of bound' do
+      xit 'raises an error'
+    end
   end
 
   describe '#set_row' do
     it 'set value to a given row y and between columns x1 and x2' do
       subject.set_row(1, 2, 3, 'C')
       expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'C', 'C']
+    end
+
+    context 'when x1 is greater than x2' do
+      xit 'raises an error'
+    end
+
+    context 'when coordinates are out of bound' do
+      xit 'raises an error'
     end
   end
 
