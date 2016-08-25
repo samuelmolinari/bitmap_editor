@@ -17,6 +17,12 @@ class Bitmap
     end
   end
 
+  def set_row(x1, x2, y, value)
+    (x1..x2).each do |x|
+      set_pixel(x, y, value)
+    end
+  end
+
   def reset(value)
     matrix.map! { value }
   end

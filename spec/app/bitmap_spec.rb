@@ -44,6 +44,13 @@ describe Bitmap do
     end
   end
 
+  describe '#set_row' do
+    it 'set value to a given row y and between columns x1 and x2' do
+      subject.set_row(1, 2, 3, 'C')
+      expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'C', 'C']
+    end
+  end
+
   describe '#set_pixel' do
     it 'set value at given coordinate x,y' do
       subject.set_pixel(1, 1, '1_1')
