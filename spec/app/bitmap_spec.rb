@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../app/bitmap'
+require './app/bitmap'
 
 describe Bitmap do
   subject { described_class.new(2,3) }

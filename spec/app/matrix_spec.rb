@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../app/matrix'
+require './app/matrix'
 
 describe Matrix do
   let(:width) { 2 }

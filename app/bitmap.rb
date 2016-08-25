@@ -1,4 +1,4 @@
-require_relative 'matrix'
+require './app/matrix'
 
 class Bitmap < Matrix
   DEFAULT_COLOUR = 'O'

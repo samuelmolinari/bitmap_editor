@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../app/command'
+require './app/command'
 
 describe Command do
   subject { described_class.new(:test, %i{a b}, 'test lambda', -> (a,b) { a + b }) }

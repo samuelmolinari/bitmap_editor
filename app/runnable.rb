@@ -1,4 +1,4 @@
-require_relative 'command'
+require './app/command'
 
 module Runnable
   def run

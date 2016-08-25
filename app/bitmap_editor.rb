@@ -1,5 +1,5 @@
-require_relative 'bitmap'
-require_relative 'runnable'
+require './app/bitmap'
+require './app/runnable'
 
 class BitmapEditor
   include Runnable

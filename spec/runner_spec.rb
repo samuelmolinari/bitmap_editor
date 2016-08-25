@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../app/command'
+require './app/command'
 
 describe 'Technical Test Ruby developer example' do
   let(:commands) { ['I 5 6', 'L 2 3 A', 'S', 'V 2 3 6 W', 'H 3 5 2 Z', 'S', 'X'] }

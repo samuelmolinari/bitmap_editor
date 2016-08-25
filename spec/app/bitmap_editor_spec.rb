@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'support/command_macro'
-
-require_relative '../../app/bitmap_editor'
+require './app/bitmap_editor'
 
 describe BitmapEditor do
   include CommandMacro
