@@ -76,6 +76,10 @@ describe BitmapEditor do
       end
 
       xit 'output an error when the C value is not a capital letter'
+
+      context 'without bitmap' do
+        xit 'warns the user a bitmap needs creating with the command help'
+      end
     end
 
     describe 'H command' do
@@ -87,6 +91,10 @@ describe BitmapEditor do
       end
 
       xit 'output an error when the C value is not a capital letter'
+
+      context 'without bitmap' do
+        xit 'warns the user a bitmap needs creating with the command help'
+      end
     end
 
     describe 'S command' do
@@ -95,6 +103,10 @@ describe BitmapEditor do
         expect(subject).to receive(:show_matrix)
 
         subject.run
+      end
+
+      context 'without bitmap' do
+        xit 'warns the user a bitmap needs creating with the command help'
       end
     end
 
