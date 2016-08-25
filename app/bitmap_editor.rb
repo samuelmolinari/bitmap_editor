@@ -4,8 +4,6 @@ require_relative 'bitmap'
 class BitmapEditor
   attr_reader :commands, :bitmap
 
-  DEFAULT_COLOUR = 'O'
-
   def initialize
     @commands = {}
     @bitmap = nil
@@ -40,11 +38,11 @@ class BitmapEditor
   private
 
     def create_new_matrix(m,n)
-      @bitmap = Bitmap.new(m.to_i, n.to_i, DEFAULT_COLOUR)
+      @bitmap = Bitmap.new(m.to_i, n.to_i)
     end
 
     def clear_matrix
-      run_bitmap_command(:reset, DEFAULT_COLOUR)
+      run_bitmap_command(:reset)
     end
 
     def colour_matrix_pixel(x, y, c)

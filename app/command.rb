@@ -7,7 +7,12 @@ class Command
 
   def run(args = [])
     return invalid unless valid?(args)
-    executor.call(*args)
+    begin
+      executor.call(*args)
+    rescue => e
+      puts "Unexpected error: #{e.message}"
+      puts help
+    end
   end
 
   def help
@@ -17,8 +22,7 @@ class Command
   private
 
   def invalid
-      puts "Error! Invalid number of arguments."
-      puts "Help for #{cmd}:"
+      puts "Error: Invalid number of arguments"
       puts help
   end
 

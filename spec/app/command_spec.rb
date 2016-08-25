@@ -17,6 +17,14 @@ describe Command do
         expect { subject.run([1,2,3]) }.to output(/#{subject.help}/).to_stdout
       end
     end
+
+    context 'when unexpected error occurs' do
+      it 'ouputs the exception message' do
+        allow(subject.executor).to receive(:call) { fail 'test' }
+        expect { subject.run([1,2]) }.to output(/Unexpected error/).to_stdout
+        expect { subject.run([1,2]) }.to output(/test/).to_stdout
+      end
+    end
   end
 end
 

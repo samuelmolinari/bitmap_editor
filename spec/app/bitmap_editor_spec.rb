@@ -18,8 +18,6 @@ describe BitmapEditor do
         expect(subject.bitmap.width).to eq 2
         expect(subject.bitmap.height).to eq 3
       end
-
-      xit 'output an error when the M or N values are not between 1 and 250'
     end
 
     describe 'C command' do
@@ -33,7 +31,7 @@ describe BitmapEditor do
         it 'clears matrix' do
           one_off_cmd(subject, 'C')
 
-          expect(subject.bitmap).to receive(:reset).with('O')
+          expect(subject.bitmap).to receive(:reset)
 
           subject.run
         end
@@ -71,7 +69,6 @@ describe BitmapEditor do
         end
       end
 
-      xit 'output an error when the C value is not a capital letter'
     end
 
     describe 'V command' do
@@ -90,10 +87,11 @@ describe BitmapEditor do
         end
       end
 
-      xit 'output an error when the C value is not a capital letter'
-
       context 'without bitmap' do
-        xit 'warns the user a bitmap needs creating with the command help'
+        it 'warns the user a bitmap needs creating with the command help' do
+          one_off_cmd(subject, 'V 1 2 3 C')
+          expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+        end
       end
     end
 
@@ -113,10 +111,11 @@ describe BitmapEditor do
         end
       end
 
-      xit 'output an error when the C value is not a capital letter'
-
       context 'without bitmap' do
-        xit 'warns the user a bitmap needs creating with the command help'
+        it 'warns the user a bitmap needs creating with the command help' do
+          one_off_cmd(subject, 'H 1 2 3 C')
+          expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+        end
       end
     end
 
@@ -137,7 +136,10 @@ describe BitmapEditor do
       end
 
       context 'without bitmap' do
-        xit 'warns the user a bitmap needs creating with the command help'
+        it 'warns the user a bitmap needs creating with the command help' do
+          one_off_cmd(subject, 'S')
+          expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+        end
       end
     end
 

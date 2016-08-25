@@ -1,51 +1,28 @@
-class Bitmap
-  attr_reader :matrix, :width, :height
+require_relative 'matrix'
 
-  def initialize(w, h, default_value = nil)
-    @width, @height = w, h
-    @matrix = Array.new(size) { default_value }
+class Bitmap < Matrix
+  DEFAULT_COLOUR = 'O'
+  MAX_SIZE = 250
+
+  def initialize(w, h)
+    super(parse_size(w), parse_size(h), DEFAULT_COLOUR)
   end
 
-  def set_pixel(x, y, value)
-    return if out_of_boundaries?(x, y)
-    matrix[coordinates_to_index(x, y)] = value
+  def reset
+    super(DEFAULT_COLOUR)
   end
 
-  def set_column(x, y1, y2, value)
-    (y1..y2).each do |y|
-      set_pixel(x, y, value)
-    end
+  def valid_value?(value)
+    value && value.size == 1 && /[[:upper:]]/.match(value)
   end
 
-  def set_row(x1, x2, y, value)
-    (x1..x2).each do |x|
-      set_pixel(x, y, value)
-    end
-  end
-
-  def reset(value)
-    matrix.fill(value)
-  end
-
-  def size
-    width * height
-  end
-
-  def to_s
-    mutli_dimmentional.map(&:join).join("\n")
+  def hint
+    "Must have a width and height between 1 and #{MAX_SIZE}"
   end
 
   private
 
-  def mutli_dimmentional
-    matrix.each_slice(width).to_a
-  end
-
-  def coordinates_to_index(x, y)
-    ((y-1) * width) + (x-1)
-  end
-
-  def out_of_boundaries?(x,y)
-    x > width || y > height
+  def parse_size(size)
+    [[1, size].max, MAX_SIZE].min
   end
 end
