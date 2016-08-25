@@ -21,12 +21,12 @@ class Command
 
   private
 
-  def invalid
+    def invalid
       puts "Error: Invalid number of arguments"
       puts help
-  end
+    end
 
-  def valid?(args)
-    arguments.size == args.size
-  end
+    def valid?(args)
+      arguments.size == args.size
+    end
 end

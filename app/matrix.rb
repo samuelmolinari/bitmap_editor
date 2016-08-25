@@ -41,19 +41,19 @@ class Matrix
 
   private
 
-  def valid_value?(value)
-    true
-  end
+    def valid_value?(value)
+      true
+    end
 
-  def mutli_dimmentional
-    matrix.each_slice(width).to_a
-  end
+    def mutli_dimmentional
+      matrix.each_slice(width).to_a
+    end
 
-  def coordinates_to_index(x, y)
-    ((y-1) * width) + (x-1)
-  end
+    def coordinates_to_index(x, y)
+      ((y-1) * width) + (x-1)
+    end
 
-  def out_of_boundaries?(x,y)
-    x > width || y > height
-  end
+    def out_of_boundaries?(x,y)
+      x > width || y > height
+    end
 end

@@ -18,7 +18,7 @@ class Bitmap < Matrix
 
   private
 
-  def parse_size(size)
-    [[1, size].max, MAX_SIZE].min
-  end
+    def parse_size(size)
+      [[1, size].max, MAX_SIZE].min
+    end
 end
