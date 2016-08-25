@@ -3,19 +3,21 @@ require_relative 'command'
 module Runnable
   def run
     start
-    puts 'type ? for help'
 
     while @running
       print '> '
+      handle_input
+    end
+  end
 
-      args = gets.chomp.split(' ')
-      cmd = commands[args.shift]
+  def handle_input
+    args = gets.chomp.split(' ')
+    cmd = commands[args.shift]
 
-      if cmd
-        cmd.run(args)
-      else
-        unknown_command
-      end
+    if cmd
+      cmd.run(args)
+    else
+      unknown_command
     end
   end
 

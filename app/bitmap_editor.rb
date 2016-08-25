@@ -46,6 +46,11 @@ class BitmapEditor
       puts run_bitmap_command(:to_s)
     end
 
+    def start
+      super
+      puts 'type ? for help'
+    end
+
     def exit_console
       puts 'goodbye!'
       super
