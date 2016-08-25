@@ -26,16 +26,16 @@ describe Matrix do
   end
 
   describe '#reset' do
+    let(:matrix) { [1,2] }
+
     before(:each) do
-      subject.set_pixel(1, 1, '1_1')
-      subject.set_pixel(2, 2, '2_2')
-      subject.set_pixel(2, 3, '2_3')
+      allow(subject).to receive(:matrix) { matrix }
     end
 
     it 'sets all the values to the given value' do
       subject.reset('O')
 
-      expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
+      expect(subject.matrix).to eq ['O', 'O']
     end
   end
 
@@ -88,14 +88,13 @@ describe Matrix do
   end
 
   describe '#to_s' do
-    it 'generates a string representing the matrix' do
-      subject.set_pixel(1, 1, 'A')
-      subject.set_pixel(2, 1, 'B')
-      subject.set_pixel(1, 2, 'C')
-      subject.set_pixel(2, 2, 'D')
-      subject.set_pixel(1, 3, 'E')
-      subject.set_pixel(2, 3, 'F')
+    let(:matrix) { %w{A B C D E F} }
 
+    before(:each) do
+      allow(subject).to receive(:matrix) { matrix }
+    end
+
+    it 'generates a string representing the matrix' do
       expect(subject.to_s).to eq("AB\nCD\nEF")
     end
   end
