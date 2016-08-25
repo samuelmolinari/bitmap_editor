@@ -48,7 +48,7 @@ module Runnable
   end
 
   def register_command(cmd, arguments, description, executor)
-    commands[cmd.to_s] = Command.new(cmd, arguments, description, executor)
+    commands[cmd.to_s] = Command.new(cmd, arguments, description, method(executor))
   end
 
   def show_help
