@@ -20,6 +20,17 @@ describe Bitmap do
     end
   end
 
+  describe '#set_pixel' do
+    it 'does not update the matrix when value is not a capital letter' do
+      subject.set_pixel(1,1,1)
+      expect(subject.matrix.first).to eq 'O'
+      subject.set_pixel(1,1,'a')
+      expect(subject.matrix.first).to eq 'O'
+      subject.set_pixel(1,1,'A')
+      expect(subject.matrix.first).to eq 'A'
+    end
+  end
+
   describe '#reset' do
     before(:each) do
       subject.set_pixel(1, 2, nil)

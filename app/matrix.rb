@@ -7,7 +7,7 @@ class Matrix
   end
 
   def set_pixel(x, y, value)
-    return if out_of_boundaries?(x, y) && valid_value?(value)
+    return if out_of_boundaries?(x, y) || !valid_value?(value)
     matrix[coordinates_to_index(x, y)] = value
   end
 
