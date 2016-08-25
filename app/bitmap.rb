@@ -13,11 +13,11 @@ class Bitmap < Matrix
     super(DEFAULT_COLOUR)
   end
 
-  def valid_value?(value)
-    value && value.size == 1 && /[[:upper:]]/.match(value)
-  end
-
   private
+
+    def valid_value?(value)
+      value && value.size == 1 && /[[:upper:]]/.match(value)
+    end
 
     def parse_size(size)
       [[MIN_SIZE, size].max, MAX_SIZE].min
