@@ -58,7 +58,10 @@ describe BitmapEditor do
       end
 
       context 'without bitmap' do
-        xit 'warns the user a bitmap needs creating with the command help'
+        it 'warns the user a bitmap needs creating with the command help' do
+          one_off_cmd(subject, 'L 1 2 C')
+          expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+        end
       end
 
       xit 'output an error when the C value is not a capital letter'

@@ -24,7 +24,7 @@ class BitmapEditor
       print '> '
 
       args = gets.chomp.split(' ')
-      cmd = @commands[args.shift]
+      cmd = commands[args.shift]
 
       if cmd
         cmd.run(args)
@@ -45,8 +45,7 @@ class BitmapEditor
     end
 
     def colour_matrix_pixel(x, y, c)
-      return unless bitmap
-      bitmap.set_pixel(x.to_i, y.to_i, c)
+      run_bitmap_command(:set_pixel, x.to_i, y.to_i, c)
     end
 
     def colour_matrix_row(x, y1, y2, c)
@@ -71,10 +70,19 @@ class BitmapEditor
     end
 
     def show_help
-      puts @commands.values.map(&:help).join("\n")
+      puts commands.values.map(&:help).join("\n")
     end
 
     def register_command(cmd, arguments, description, executor)
-      @commands[cmd.to_s] = Command.new(cmd, arguments, description, executor)
+      commands[cmd.to_s] = Command.new(cmd, arguments, description, executor)
+    end
+
+    def bitmap_missing_warning
+      puts "Error: No bitmat has been created. Here is some help to create a matrix:\n#{commands['I'].help}"
+    end
+
+    def run_bitmap_command(method, *args)
+      return bitmap_missing_warning unless bitmap
+      bitmap.send(method, *args)
     end
 end
