@@ -4,18 +4,10 @@ module Runnable
   def run
     start
 
-    while @running
+    while running?
       print '> '
       handle_input
     end
-  end
-
-  def start_message
-    nil
-  end
-
-  def exit_message
-    nil
   end
 
   def handle_input
@@ -39,6 +31,10 @@ module Runnable
     puts exit_message if exit_message
   end
 
+  def running?
+    @running
+  end
+
   def commands
     {}
   end
@@ -53,5 +49,13 @@ module Runnable
 
   def show_help
     puts commands.values.map(&:help).join("\n")
+  end
+
+  def start_message
+    nil
+  end
+
+  def exit_message
+    nil
   end
 end
