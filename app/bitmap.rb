@@ -24,7 +24,7 @@ class Bitmap
   end
 
   def reset(value)
-    matrix.map! { value }
+    matrix.fill(value)
   end
 
   def size
