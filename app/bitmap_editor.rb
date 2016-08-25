@@ -1,7 +1,9 @@
-require_relative 'command'
 require_relative 'bitmap'
+require_relative 'runnable'
 
 class BitmapEditor
+  include Runnable
+
   attr_reader :commands, :bitmap
 
   def initialize
@@ -16,23 +18,6 @@ class BitmapEditor
     register_command(:S, %i{}, 'Show the contents of the current image', -> {show_matrix})
     register_command(:X, %i{}, 'Terminate the session', -> {exit_console})
     register_command(:'?', %i{}, 'Help', -> {show_help})
-  end
-
-  def run
-    @running = true
-    puts 'type ? for help'
-    while @running
-      print '> '
-
-      args = gets.chomp.split(' ')
-      cmd = commands[args.shift]
-
-      if cmd
-        cmd.run(args)
-      else
-        unknown_command
-      end
-    end
   end
 
   private
@@ -61,21 +46,9 @@ class BitmapEditor
       puts run_bitmap_command(:to_s)
     end
 
-    def unknown_command
-      puts 'unrecognised command :('
-    end
-
     def exit_console
       puts 'goodbye!'
-      @running = false
-    end
-
-    def show_help
-      puts commands.values.map(&:help).join("\n")
-    end
-
-    def register_command(cmd, arguments, description, executor)
-      commands[cmd.to_s] = Command.new(cmd, arguments, description, executor)
+      super
     end
 
     def bitmap_missing_warning
