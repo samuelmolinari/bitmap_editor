@@ -20,10 +20,12 @@ describe BitmapEditor do
   describe 'run' do
     describe 'I command' do
       it 'creates a new matrix of size MxN' do
-        one_off_cmd(subject, 'I M N')
-        expect(subject).to receive(:create_new_matrix).with('M', 'N')
+        one_off_cmd(subject, 'I 2 3')
 
         subject.run
+
+        expect(subject.bitmap.width).to eq 2
+        expect(subject.bitmap.height).to eq 3
       end
 
       xit 'output an error when the M or N values are not between 1 and 250'
@@ -39,11 +41,24 @@ describe BitmapEditor do
     end
 
     describe 'L command' do
-      it 'colours pixel' do
-        one_off_cmd(subject, 'L X Y C')
-        expect(subject).to receive(:colour_matrix_pixel).with('X', 'Y', 'C')
+      context 'with bitmap' do
+        let(:bitmap) { Bitmap.new(3,3) }
 
-        subject.run
+        before(:each) do
+          allow(subject).to receive(:bitmap) { bitmap }
+        end
+
+        it 'colours pixel' do
+          one_off_cmd(subject, 'L 1 2 C')
+
+          expect(subject.bitmap).to receive(:set_pixel).with(1, 2, 'C')
+
+          subject.run
+        end
+      end
+
+      context 'without bitmap' do
+        xit 'warns the user a bitmap needs creating with the command help'
       end
 
       xit 'output an error when the C value is not a capital letter'

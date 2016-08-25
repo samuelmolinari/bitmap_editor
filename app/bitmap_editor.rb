@@ -1,10 +1,11 @@
 require_relative 'command'
 
 class BitmapEditor
-  attr_reader :commands
+  attr_reader :commands, :bitmap
 
   def initialize
     @commands = {}
+    @bitmap = nil
 
     register_command(:I, %i{M N}, 'Create a new M x N image with all pixels coloured white (O)', -> (m, n) {create_new_matrix(m, n)})
     register_command(:C, %i{}, 'Clears the table, setting all pixels to white (O)', -> {clear_matrix})
@@ -36,21 +37,28 @@ class BitmapEditor
   private
 
     def create_new_matrix(m,n)
+      @bitmap = Bitmap.new(m.to_i, n.to_i)
     end
 
     def clear_matrix
+      return unless bitmap
     end
 
     def colour_matrix_pixel(x, y, c)
+      return unless bitmap
+      bitmap.set_pixel(x.to_i, y.to_i, c)
     end
 
     def colour_matrix_row(x, y1, y2, c)
+      return unless bitmap
     end
 
     def colour_matrix_column(x1, x2, y, c)
+      return unless bitmap
     end
 
     def show_matrix
+      return puts 'No bitmap was created' unless bitmap
     end
 
     def unknown_command
