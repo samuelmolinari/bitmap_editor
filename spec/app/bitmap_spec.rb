@@ -25,6 +25,18 @@ describe Bitmap do
     end
   end
 
+  describe '#reset' do
+    it 'sets all the values to the given value' do
+      subject.set_pixel(0, 0, '0_0')
+      subject.set_pixel(1, 1, '1_1')
+      subject.set_pixel(1, 2, '1_2')
+
+      subject.reset('O')
+
+      expect(subject.matrix).to match_array ['O', 'O', 'O', 'O', 'O', 'O']
+    end
+  end
+
   describe '#set_pixel' do
     it 'set value at given coordinate x,y' do
       subject.set_pixel(0, 0, '0_0')

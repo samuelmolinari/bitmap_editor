@@ -11,6 +11,10 @@ class Bitmap
     matrix[coordinates_to_index(x, y)] = value
   end
 
+  def reset(value)
+    matrix.map! { value }
+  end
+
   def size
     width * height
   end

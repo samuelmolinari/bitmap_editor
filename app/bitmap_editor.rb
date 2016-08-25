@@ -3,6 +3,8 @@ require_relative 'command'
 class BitmapEditor
   attr_reader :commands, :bitmap
 
+  DEFAULT_COLOUR = 'O'
+
   def initialize
     @commands = {}
     @bitmap = nil
@@ -41,7 +43,7 @@ class BitmapEditor
     end
 
     def clear_matrix
-      return unless bitmap
+      run_bitmap_command(:reset, DEFAULT_COLOUR)
     end
 
     def colour_matrix_pixel(x, y, c)

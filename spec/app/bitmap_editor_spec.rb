@@ -32,11 +32,27 @@ describe BitmapEditor do
     end
 
     describe 'C command' do
-      it 'clears matrix' do
-        one_off_cmd(subject, 'C')
-        expect(subject).to receive(:clear_matrix)
+      context 'with bitmap' do
+        let(:bitmap) { Bitmap.new(3,3) }
 
-        subject.run
+        before(:each) do
+          allow(subject).to receive(:bitmap) { bitmap }
+        end
+
+        it 'clears matrix' do
+          one_off_cmd(subject, 'C')
+
+          expect(subject.bitmap).to receive(:reset).with('O')
+
+          subject.run
+        end
+      end
+
+      context 'without bitmap' do
+        it 'warns the user a bitmap needs creating with the command help' do
+          one_off_cmd(subject, 'C')
+          expect { subject.run }.to output(/I M N - Create a new M x N image with all pixels coloured white \(O\)\./).to_stdout
+        end
       end
     end
 
