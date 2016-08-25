@@ -46,18 +46,16 @@ class BitmapEditor
       puts run_bitmap_command(:to_s)
     end
 
-    def start
-      super
-      puts 'type ? for help'
+    def start_message
+      'type ? for help'
     end
 
-    def exit_console
-      puts 'goodbye!'
-      super
+    def exit_message
+      'goodbye!'
     end
 
     def bitmap_missing_warning
-      puts "Error: No bitmap has been created. Here is some help to create a matrix:\n#{commands['I'].help}"
+      puts "Error: No bitmap has been created. \n#{commands['I'].help}"
     end
 
     def run_bitmap_command(method, *args)

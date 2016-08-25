@@ -8,6 +8,11 @@ describe BitmapEditor do
 
   subject { described_class.new }
 
+  before(:each) do
+    allow(subject).to receive(:print)
+    allow(subject).to receive(:start_message)
+  end
+
   describe 'run' do
     describe 'I command' do
       it 'creates a new matrix of size MxN' do
@@ -130,8 +135,6 @@ describe BitmapEditor do
         it 'outputs the matrix' do
           one_off_cmd(subject, 'S')
           expect { subject.run }.to output(/#{subject.bitmap.to_s}/).to_stdout
-
-          subject.run
         end
       end
 

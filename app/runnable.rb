@@ -10,6 +10,14 @@ module Runnable
     end
   end
 
+  def start_message
+    nil
+  end
+
+  def exit_message
+    nil
+  end
+
   def handle_input
     args = gets.chomp.split(' ')
     cmd = commands[args.shift]
@@ -22,11 +30,13 @@ module Runnable
   end
 
   def start
+    puts start_message if start_message
     @running = true
   end
 
   def exit_console
     @running = false
+    puts exit_message if exit_message
   end
 
   def commands
