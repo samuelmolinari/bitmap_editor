@@ -11,6 +11,12 @@ class Bitmap
     matrix[coordinates_to_index(x, y)] = value
   end
 
+  def set_column(x, y1, y2, value)
+    (y1..y2).each do |y|
+      set_pixel(x, y, value)
+    end
+  end
+
   def reset(value)
     matrix.map! { value }
   end
