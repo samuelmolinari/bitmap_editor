@@ -130,11 +130,19 @@ describe BitmapEditor do
     end
 
     describe 'S command' do
-      it 'shows the matrix' do
-        one_off_cmd(subject, 'S')
-        expect(subject).to receive(:show_matrix)
+      context 'with bitmap' do
+        let(:bitmap) { Bitmap.new(3,3) }
 
-        subject.run
+        before(:each) do
+          allow(subject).to receive(:bitmap) { bitmap }
+        end
+
+        it 'outputs the matrix' do
+          one_off_cmd(subject, 'S')
+          expect { subject.run }.to output(/#{subject.bitmap.to_s}/).to_stdout
+
+          subject.run
+        end
       end
 
       context 'without bitmap' do

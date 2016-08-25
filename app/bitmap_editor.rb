@@ -59,7 +59,7 @@ class BitmapEditor
     end
 
     def show_matrix
-      return puts 'No bitmap was created' unless bitmap
+      puts run_bitmap_command(:to_s)
     end
 
     def unknown_command
