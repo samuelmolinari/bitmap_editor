@@ -33,17 +33,20 @@ describe Bitmap do
 
       subject.reset('O')
 
-      expect(subject.matrix).to match_array ['O', 'O', 'O', 'O', 'O', 'O']
+      expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
     end
   end
 
   describe '#set_pixel' do
     it 'set value at given coordinate x,y' do
       subject.set_pixel(0, 0, '0_0')
+      subject.set_pixel(0, 1, '0_1')
+      subject.set_pixel(0, 2, '0_2')
+      subject.set_pixel(1, 0, '1_0')
       subject.set_pixel(1, 1, '1_1')
       subject.set_pixel(1, 2, '1_2')
 
-      expect(subject.matrix).to eq ['0_0', 'O', 'O', '1_1', 'O', '1_2']
+      expect(subject.matrix).to eq ['0_0', '1_0', '0_1', '1_1', '0_2', '1_2']
     end
 
     context 'when setting a value out of the matrix boundaries' do
