@@ -80,7 +80,7 @@ class BitmapEditor
     end
 
     def bitmap_missing_warning
-      puts "Error: No bitmat has been created. Here is some help to create a matrix:\n#{commands['I'].help}"
+      puts "Error: No bitmap has been created. Here is some help to create a matrix:\n#{commands['I'].help}"
     end
 
     def run_bitmap_command(method, *args)
