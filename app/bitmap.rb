@@ -22,10 +22,10 @@ class Bitmap
   private
 
   def coordinates_to_index(x, y)
-    (y * width) + x
+    ((y-1) * width) + (x-1)
   end
 
   def out_of_boundaries?(x,y)
-    x >= width || y >= height
+    x > width || y > height
   end
 end

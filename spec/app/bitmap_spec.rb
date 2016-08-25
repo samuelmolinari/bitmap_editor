@@ -27,9 +27,9 @@ describe Bitmap do
 
   describe '#reset' do
     it 'sets all the values to the given value' do
-      subject.set_pixel(0, 0, '0_0')
       subject.set_pixel(1, 1, '1_1')
-      subject.set_pixel(1, 2, '1_2')
+      subject.set_pixel(2, 2, '2_2')
+      subject.set_pixel(2, 3, '2_3')
 
       subject.reset('O')
 
@@ -39,19 +39,19 @@ describe Bitmap do
 
   describe '#set_pixel' do
     it 'set value at given coordinate x,y' do
-      subject.set_pixel(0, 0, '0_0')
-      subject.set_pixel(0, 1, '0_1')
-      subject.set_pixel(0, 2, '0_2')
-      subject.set_pixel(1, 0, '1_0')
       subject.set_pixel(1, 1, '1_1')
       subject.set_pixel(1, 2, '1_2')
+      subject.set_pixel(1, 3, '1_3')
+      subject.set_pixel(2, 1, '2_1')
+      subject.set_pixel(2, 2, '2_2')
+      subject.set_pixel(2, 3, '2_3')
 
-      expect(subject.matrix).to eq ['0_0', '1_0', '0_1', '1_1', '0_2', '1_2']
+      expect(subject.matrix).to eq ['1_1', '2_1', '1_2', '2_2', '1_3', '2_3']
     end
 
     context 'when setting a value out of the matrix boundaries' do
       it 'does not affect the matrix' do
-        subject.set_pixel(3, 3, '3_3')
+        subject.set_pixel(4, 4, '4_4')
         expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
       end
     end
