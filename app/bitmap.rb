@@ -1,8 +1,9 @@
 require './app/matrix'
 
 class Bitmap < Matrix
-  DEFAULT_COLOUR = 'O'
+  MIN_SIZE = 1
   MAX_SIZE = 250
+  DEFAULT_COLOUR = 'O'
 
   def initialize(w, h)
     super(parse_size(w), parse_size(h), DEFAULT_COLOUR)
@@ -19,6 +20,6 @@ class Bitmap < Matrix
   private
 
     def parse_size(size)
-      [[1, size].max, MAX_SIZE].min
+      [[MIN_SIZE, size].max, MAX_SIZE].min
     end
 end
