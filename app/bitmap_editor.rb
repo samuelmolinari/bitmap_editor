@@ -39,7 +39,7 @@ class BitmapEditor
   private
 
     def create_new_matrix(m,n)
-      @bitmap = Bitmap.new(m.to_i, n.to_i)
+      @bitmap = Bitmap.new(m.to_i, n.to_i, DEFAULT_COLOUR)
     end
 
     def clear_matrix

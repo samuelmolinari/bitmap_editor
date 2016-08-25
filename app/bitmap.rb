@@ -1,9 +1,9 @@
 class Bitmap
   attr_reader :matrix, :width, :height
 
-  def initialize(w, h)
+  def initialize(w, h, default_value = nil)
     @width, @height = w, h
-    @matrix = Array.new(size) { 'O' }
+    @matrix = Array.new(size) { default_value }
   end
 
   def set_pixel(x, y, value)

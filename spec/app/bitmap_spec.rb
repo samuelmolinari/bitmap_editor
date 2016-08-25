@@ -5,7 +5,7 @@ describe Bitmap do
   let(:width) { 2 }
   let(:height) { 3 }
 
-  subject { described_class.new(width, height) }
+  subject { described_class.new(width, height, 'O') }
 
   describe '#initialize' do
     it 'creates a bitmap of size MxN' do
