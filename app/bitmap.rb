@@ -31,7 +31,15 @@ class Bitmap
     width * height
   end
 
+  def to_s
+    mutli_dimmentional.map { |row| row.join(' ') }.join("\n")
+  end
+
   private
+
+  def mutli_dimmentional
+    matrix.each_slice(width).to_a
+  end
 
   def coordinates_to_index(x, y)
     ((y-1) * width) + (x-1)

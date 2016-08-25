@@ -26,11 +26,13 @@ describe Bitmap do
   end
 
   describe '#reset' do
-    it 'sets all the values to the given value' do
+    before(:each) do
       subject.set_pixel(1, 1, '1_1')
       subject.set_pixel(2, 2, '2_2')
       subject.set_pixel(2, 3, '2_3')
+    end
 
+    it 'sets all the values to the given value' do
       subject.reset('O')
 
       expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
@@ -84,6 +86,19 @@ describe Bitmap do
         subject.set_pixel(4, 4, '4_4')
         expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
       end
+    end
+  end
+
+  describe '#to_s' do
+    it 'generates a string representing the matrix' do
+      subject.set_pixel(1, 1, 'A')
+      subject.set_pixel(2, 1, 'B')
+      subject.set_pixel(1, 2, 'C')
+      subject.set_pixel(2, 2, 'D')
+      subject.set_pixel(1, 3, 'E')
+      subject.set_pixel(2, 3, 'F')
+
+      expect(subject.to_s).to eq("A B\nC D\nE F")
     end
   end
 end
