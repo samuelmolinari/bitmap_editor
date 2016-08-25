@@ -84,11 +84,19 @@ describe BitmapEditor do
     end
 
     describe 'V command' do
-      it 'colours matrix row' do
-        one_off_cmd(subject, 'V X Y1 Y2 C')
-        expect(subject).to receive(:colour_matrix_row).with('X', 'Y1', 'Y2', 'C')
+      context 'with bitmap' do
+        let(:bitmap) { Bitmap.new(3,3) }
 
-        subject.run
+        before(:each) do
+          allow(subject).to receive(:bitmap) { bitmap }
+        end
+
+        it 'colours matrix column' do
+          one_off_cmd(subject, 'V 1 2 3 C')
+          expect(subject.bitmap).to receive(:set_column).with(1, 2, 3, 'C')
+
+          subject.run
+        end
       end
 
       xit 'output an error when the C value is not a capital letter'
@@ -99,11 +107,19 @@ describe BitmapEditor do
     end
 
     describe 'H command' do
-      it 'colours matrix row' do
-        one_off_cmd(subject, 'H X1 X2 Y C')
-        expect(subject).to receive(:colour_matrix_column).with('X1', 'X2', 'Y', 'C')
+      context 'with bitmap' do
+        let(:bitmap) { Bitmap.new(3,3) }
 
-        subject.run
+        before(:each) do
+          allow(subject).to receive(:bitmap) { bitmap }
+        end
+
+        it 'colours matrix row' do
+          one_off_cmd(subject, 'H 1 2 3 C')
+          expect(subject.bitmap).to receive(:set_row).with(1, 2, 3, 'C')
+
+          subject.run
+        end
       end
 
       xit 'output an error when the C value is not a capital letter'
