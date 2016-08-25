@@ -21,7 +21,7 @@ describe Bitmap do
     end
 
     it 'creates a matrix containing Os' do
-      expect(subject.matrix).to match_array ['O', 'O', 'O', 'O', 'O', 'O']
+      expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
     end
   end
 
@@ -43,13 +43,13 @@ describe Bitmap do
       subject.set_pixel(1, 1, '1_1')
       subject.set_pixel(1, 2, '1_2')
 
-      expect(subject.matrix).to match_array ['0_0', 'O', 'O', '1_1', 'O', '1_2']
+      expect(subject.matrix).to eq ['0_0', 'O', 'O', '1_1', 'O', '1_2']
     end
 
     context 'when setting a value out of the matrix boundaries' do
       it 'does not affect the matrix' do
         subject.set_pixel(3, 3, '3_3')
-        expect(subject.matrix).to match_array ['O', 'O', 'O', 'O', 'O', 'O']
+        expect(subject.matrix).to eq ['O', 'O', 'O', 'O', 'O', 'O']
       end
     end
   end
